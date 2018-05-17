@@ -1,0 +1,25 @@
+allprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+        // maven local
+        maven {
+            url System.getenv( 'MAVEN_REPO' )
+        }
+    }
+
+    dependencies {
+        compile(
+                'org.apache.logging.log4j:log4j-api:2.4+',
+                'org.apache.logging.log4j:log4j-core:2.4+',
+                'com.lmax:disruptor:3.3+',
+
+                'org.codehaus.groovy:groovy-all:2.3.9:indy' )
+
+        testCompile( 'org.testng:testng:6.8+' ) {transitive = true}
+
+    }
+}
